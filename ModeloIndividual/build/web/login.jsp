@@ -8,12 +8,12 @@
             function validaForm(){
                 formulario = document.form_login;
                 if(formulario.login.value==""){
-                    alert("O Campo login deve ser preenchido!!");
+                    alert("O Campo login deve ser preenchido!");
                     formulario.login.focus();
                     return false;
                 }
                 if(formulario.senha.value==""){
-                    alert("O Campo senha deve ser preenchido!!");
+                    alert("O Campo senha deve ser preenchido!");
                     formulario.senha.focus();
                     return false;
                 }
