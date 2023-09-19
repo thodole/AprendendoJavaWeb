@@ -24,13 +24,13 @@
                 <tr>
                     <td width="760" height="20" valign="top">
                         <%--@include file="menu.jsp" --%> 
-                         <a href="form_inserir_usuario.jsp">Inserir Usuário</a> | <a href="form_inserir_menu.jsp">Inserir Menu</a> | <a href="form_inserir_perfil.jsp">Inserir Perfil</a> |  <a href="listar_usuario.jsp">Listar Usuário</a>
+                         <a href="listar_usuario.jsp">Gerenciar Usuário</a>
                     </td>
                 </tr>
                 <tr>
                     <td width="760" height="330">
                         <div align="center">
-                            <h2>Lista de Usuários <a href=form_inserir_usuario.jsp> (novo usuário) </a></h2>
+                            <h3>Lista de Usuários ( <img src="imagens/novo.png" align="top"><a href="form_inserir_usuario.jsp">Novo</a> )</h3>
                             <table width="550" border="1">
                                 <tr bgcolor="#d3d3d3">
                                     <td>ID</td>
@@ -53,8 +53,9 @@
                                                         <td><%=u.getNome() %></td>
                                                         <td><%=u.getLogin() %></td>
                                                         <td align="center"><%--=u.getPerfil() --%> --- </td>
-                                                        <td align="center"> --- </td>
-                                                        <td align="center"> --- </td>
+							<td align="center"><%--=u.getId() --%> --- </td>
+                                                        <td align="center"><a href="excluir_usuario.do?id=<%=u.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>	
+                                                       
                                                     </tr>
                                                     <%
                                                 }

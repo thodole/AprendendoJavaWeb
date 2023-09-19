@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -58,7 +59,14 @@ public class UsuarioDAO extends DataBaseDAO {
             u.setId_perfil(rs.getInt("id_perfil"));
             lista.add(u);
         }
+
         return lista;
     }
+     public void excluir(Usuario usuario) throws Exception {
+        Statement stm;
+        stm = conn.createStatement();
+        String sql = "DELETE FROM usuario WHERE id=" + usuario.getId();
+        stm.execute(sql);
+    }
     
-}
+ }

@@ -9,8 +9,12 @@
         <servlet-class>controle.InserirUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InserirMenu</servlet-name>
-        <servlet-class>controle.InserirMenu</servlet-class>
+        <servlet-name>ExcluirUsuario</servlet-name>
+        <servlet-class>controle.ExcluirUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarUsuario</servlet-name>
+        <servlet-class>controle.AlterarUsuario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EfetuarLogin</servlet-name>
@@ -21,8 +25,12 @@
         <url-pattern>/inserir_usuario.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirMenu</servlet-name>
-        <url-pattern>/inserir_menu.do</url-pattern>
+        <servlet-name>ExcluirUsuario</servlet-name>
+        <url-pattern>/excluir_usuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarUsuario</servlet-name>
+        <url-pattern>/alterar_usuario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

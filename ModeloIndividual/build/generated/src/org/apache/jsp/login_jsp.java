@@ -51,12 +51,12 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            function validaForm(){\n");
       out.write("                formulario = document.form_login;\n");
       out.write("                if(formulario.login.value==\"\"){\n");
-      out.write("                    alert(\"O Campo login deve ser preenchido!!\");\n");
+      out.write("                    alert(\"O Campo login deve ser preenchido!\");\n");
       out.write("                    formulario.login.focus();\n");
       out.write("                    return false;\n");
       out.write("                }\n");
       out.write("                if(formulario.senha.value==\"\"){\n");
-      out.write("                    alert(\"O Campo senha deve ser preenchido!!\");\n");
+      out.write("                    alert(\"O Campo senha deve ser preenchido!\");\n");
       out.write("                    formulario.senha.focus();\n");
       out.write("                    return false;\n");
       out.write("                }\n");
