@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MenuDAO extends DataBaseDAO {
@@ -33,6 +34,13 @@ public class MenuDAO extends DataBaseDAO {
             lista.add(m);
         }
         return lista;
+    }
+     
+    public void excluir(Menu menu) throws Exception {
+        Statement stm;
+        stm = conn.createStatement();
+        String sql = "DELETE FROM menu WHERE id=" + menu.getId();
+        stm.execute(sql);
     }
      
 }

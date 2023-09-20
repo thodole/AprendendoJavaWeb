@@ -62,7 +62,7 @@ public class UsuarioDAO extends DataBaseDAO {
 
         return lista;
     }
-     public void excluir(Usuario usuario) throws Exception {
+    public void excluir(Usuario usuario) throws Exception {
         Statement stm;
         stm = conn.createStatement();
         String sql = "DELETE FROM usuario WHERE id=" + usuario.getId();

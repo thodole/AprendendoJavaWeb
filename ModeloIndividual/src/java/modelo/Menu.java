@@ -4,7 +4,7 @@ public class Menu {
     private int id;
     private String menu;
     private String link;
-//    private Perfil perfil;
+    private Perfil perfil;
 
     public Menu() {
     }

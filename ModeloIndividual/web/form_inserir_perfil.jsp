@@ -10,18 +10,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script language="javascript" >
             function validaForm(){
-                formulario = document.form_menu;
-                if(formulario.menu.value==""){
-                    alert("O Campo menu deve ser preenchido!!");
-                    formulario.menu.focus();
+                formulario = document.form_perfil;
+                if(formulario.perfil.value==""){
+                    alert("O Campo perfil deve ser preenchido!!");
+                    formulario.perfil.focus();
                     return false;
                 }
-                if(formulario.link.value==""){
-                    alert("O Campo link deve ser preenchido!!");
-                    formulario.link.focus();
-                    return false;
-                }
-                
+
                 return true;
             }
         </script>
@@ -43,16 +38,13 @@
                 </tr>
                 <tr>
                     <td width="760" height="330">
-                        <form name="form_menu" action="inserir_menu.do" method="post" onsubmit="return validaForm();">
+                        <form name="form_perfil" action="inserir_perfil.do" method="post" onsubmit="return validaForm();">
                             <table width="500">
                                 <tr>
-                                    <td>Menu:</td>
-                                    <td><input type="text" name="menu" size="30" /> </td>
+                                    <td>Perfil:</td>
+                                    <td><input type="text" name="perfil" size="30" /> </td>
                                 </tr>
-                                <tr>
-                                    <td>Link:</td>
-                                    <td><input type="text" name="link" size="30" /> </td>
-                                </tr>
+
                                 <tr>
                                     <td></td>
                                     <td><input type="submit" value="Salvar" /> </td>

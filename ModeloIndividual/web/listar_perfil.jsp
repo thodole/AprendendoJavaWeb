@@ -1,5 +1,5 @@
-<%@page import="modelo.Usuario"%>
-<%@page import="modelo.UsuarioDAO"%>
+<%@page import="modelo.Perfil"%>
+<%@page import="modelo.PerfilDAO"%>
 <%--@page import="modelo.Perfil"--%>
 <%@page import="java.util.ArrayList"%>
 <%--@page import="modelo.PerfilDAO"--%>
@@ -30,36 +30,32 @@
                 <tr>
                     <td width="760" height="330">
                         <div align="center">
-                            <h3>Lista de Usuários ( <img src="imagens/novo.png" align="top"><a href="form_inserir_usuario.jsp">Novo</a> )</h3>
+                            <h3>Lista de Perfis ( <img src="imagens/novo.png" align="top"><a href="form_inserir_perfil.jsp">Novo</a> )</h3>
                             <table width="550" border="1">
                                 <tr bgcolor="#d3d3d3">
                                     <td>ID</td>
-                                    <td>NOME</td>
-                                    <td>LOGIN</td>
                                     <td>PERFIL</td>
                                     <td>ALTERAR</td>
                                     <td>EXCLUIR</td>
                                 </tr>
                                 <%                                            
                                             try {
-                                                UsuarioDAO uDB = new UsuarioDAO();
-                                                ArrayList<Usuario> lista;
-                                                uDB.conectar();
-                                                lista = uDB.listar();
-                                                for(Usuario u:lista){
+                                                PerfilDAO pDB = new PerfilDAO();
+                                                ArrayList<Perfil> lista;
+                                                pDB.conectar();
+                                                lista = pDB.listar();
+                                                for(Perfil p:lista){
                                                     %>
                                                     <tr>
-                                                        <td><%=u.getId() %></td>
-                                                        <td><%=u.getNome() %></td>
-                                                        <td><%=u.getLogin() %></td>
-                                                        <td align="center"><%--=u.getPerfil() --%> --- </td>
-							<td align="center"><%--=u.getId() --%> --- </td>
-                                                        <td align="center"><a href="excluir_usuario.do?id=<%=u.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>	
-                                                       
+                                                        <td><%=p.getId() %></td>
+                                                        <td><%=p.getPerfil() %></td>
+                                                        <%--<td align="center">=u.getPerfil()  --- </td>--%>
+                                                        <td align="center"> --- </td>
+                                                        <td align="center"><a href="excluir_perfil.do?id=<%=p.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>
                                                     </tr>
                                                     <%
                                                 }
-                                                uDB.desconectar();
+                                                pDB.desconectar();
                                             } catch (Exception erro) {
                                                 out.print(erro);
                                             }

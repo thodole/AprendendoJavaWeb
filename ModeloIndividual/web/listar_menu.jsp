@@ -24,17 +24,20 @@
                 <tr>
                     <td width="760" height="20" valign="top">
                         <%--@include file="menu.jsp" --%> 
-                         <a href="form_inserir_usuario.jsp">Inserir Usuário</a> | <a href="form_inserir_menu.jsp">Inserir Menu</a> | <a href="form_inserir_perfil.jsp">Inserir Perfil</a> |  <a href="listar_usuario.jsp">Listar Usuário</a> |  <a href="listar_menu.jsp">Listar Menu</a>
+                         <a href="form_inserir_usuario.jsp">Inserir Usuário</a> | <a href="form_inserir_menu.jsp">Inserir Menu</a> | <a href="form_inserir_perfil.jsp">Inserir Perfil</a> |  <a href="listar_usuario.jsp">Listar Usuário</a> |  <a href="listar_menu.jsp">Listar Menu</a> |  <a href="listar_perfil.jsp">Listar Perfil</a>
                     </td>
                 </tr>
                 <tr>
                     <td width="760" height="330">
                         <div align="center">
-                            <h2>Lista de Menus <a href=form_inserir_menu.jsp> (novo menu) </a></h2>
+                            <h3>Lista de Menus ( <img src="imagens/novo.png" align="top"><a href="form_inserir_menu.jsp">Novo</a> )</h3>
                             <table width="550" border="1">
                                 <tr bgcolor="#d3d3d3">
+                                    <td>ID</td>
                                     <td>MENU</td>
                                     <td>LINK</td>
+                                    <td>ALTERAR</td>
+                                    <td>EXCLUIR</td>
                                 </tr>
                                 <%                                            
                                             try {
@@ -48,9 +51,9 @@
                                                         <td><%=m.getId() %></td>
                                                         <td><%=m.getMenu() %></td>
                                                         <td><%=m.getLink() %></td>
-                                                        <td align="center"><%--=u.getPerfil() --%> --- </td>
+                                                        <%--<td align="center">=u.getPerfil()  --- </td>--%>
                                                         <td align="center"> --- </td>
-                                                        <td align="center"> --- </td>
+                                                        <td align="center"><a href="excluir_menu.do?id=<%=m.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>
                                                     </tr>
                                                     <%
                                                 }
