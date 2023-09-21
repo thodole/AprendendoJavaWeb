@@ -6,7 +6,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int id_perfil;
-//    private Perfil perfil;
+    private Perfil perfil;
 
     public Usuario() {
     }
