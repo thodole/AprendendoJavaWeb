@@ -1,0 +1,3 @@
+Executar
+Limpar e Construir Projeto ... Shift + F11
+Dentro do projeto, na pasta DIST, encontre o .WAR >>> nome_do_projeto.war
