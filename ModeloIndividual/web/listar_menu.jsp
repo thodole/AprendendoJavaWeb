@@ -51,8 +51,7 @@
                                                         <td><%=m.getId() %></td>
                                                         <td><%=m.getMenu() %></td>
                                                         <td><%=m.getLink() %></td>
-                                                        <%--<td align="center">=u.getPerfil()  --- </td>--%>
-                                                        <td align="center"> --- </td>
+                                                        <td align="center"><a href="form_alterar_menu.jsp?id=<%=m.getId() %>"><img src="imagens/alterar.png" border="0"></a></td>
                                                         <td align="center"><a href="excluir_menu.do?id=<%=m.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>
                                                     </tr>
                                                     <%

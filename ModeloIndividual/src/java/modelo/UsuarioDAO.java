@@ -69,4 +69,31 @@ public class UsuarioDAO extends DataBaseDAO {
         stm.execute(sql);
     }
     
+        public void alterar(Usuario usuario) throws Exception {
+        PreparedStatement pst;
+        String sql = "UPDATE usuario SET id_perfil=?,nome=?,login=?,senha=? WHERE id=?";
+        pst = conn.prepareStatement(sql);
+        pst.setInt(1, usuario.getId_perfil());
+        pst.setString(2, usuario.getNome());
+        pst.setString(3, usuario.getLogin());
+        pst.setString(4, usuario.getSenha());
+        pst.setInt(5, usuario.getId());
+        pst.execute();
+    }
+     public Usuario carregarPorId(int id) throws Exception {
+        Statement stm;
+        ResultSet rs;
+        Usuario usuario = new Usuario();
+        stm = conn.createStatement();
+        String sql = "SELECT * FROM usuario WHERE id=" + id;
+        rs = stm.executeQuery(sql);
+        if (rs.next()) {
+            usuario.setId(rs.getInt("id"));
+            usuario.setId_perfil(rs.getInt("id_perfil"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setLogin(rs.getString("login"));
+            usuario.setSenha(rs.getString("senha"));
+        }
+        return usuario;
+    }
  }

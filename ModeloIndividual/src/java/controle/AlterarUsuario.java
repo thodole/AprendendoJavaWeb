@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
 
-
-public class InserirUsuario extends HttpServlet {
-   
+public class AlterarUsuario extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -21,10 +19,11 @@ public class InserirUsuario extends HttpServlet {
             /* TODO output your page here*/
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Inserir Usuario</title>");
+            out.println("<title>Servlet AlterarUsuario</title>");  
             out.println("</head>");
             out.println("<body>");
 
+            int id = Integer.parseInt(request.getParameter("id"));
             int id_perfil = Integer.parseInt(request.getParameter("id_perfil"));
             String nome = request.getParameter("nome");
             String login = request.getParameter("login");
@@ -38,31 +37,32 @@ public class InserirUsuario extends HttpServlet {
                 out.print("O campo Senha deve ser preenchido!");
             } else if (id_perfil<1) {
                 out.print("O campo Perfil deve ser preenchido!");
+            } else if (id<1) {
+                out.print("O ID do usuário não encontrado!");
             } else {
                 try {
                     Usuario usuario = new Usuario();
+                    usuario.setId(id);
                     usuario.setId_perfil(id_perfil);
                     usuario.setNome(nome);
                     usuario.setLogin(login);
                     usuario.setSenha(senha);
                     UsuarioDAO uDB = new UsuarioDAO();
                     uDB.conectar();
-                    uDB.inserir(usuario);
+                    uDB.alterar(usuario);
                     uDB.desconectar();
                     out.print("<script language='javascript'>");
-                    out.print("alert('Usuario inserido com sucesso!!');");
-                    out.print("location.href='form_inserir_usuario.jsp';");
+                    out.print("alert('Usuario atualizado com sucesso!!');");
+                    out.print("location.href='listar_usuario.jsp';");
                     out.print("</script>");
                 } catch (Exception erro) {
                     out.print(erro);
                 }
 
             }
-
             out.println("</body>");
             out.println("</html>");
-
-
+            
         } finally { 
             out.close();
         }

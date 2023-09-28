@@ -53,9 +53,8 @@
                                                         <td><%=u.getNome() %></td>
                                                         <td><%=u.getLogin() %></td>
                                                         <td align="center"><%--=u.getPerfil() --%> --- </td>
-							<td align="center"><%--=u.getId() --%> --- </td>
+							<td align="center"><a href="form_alterar_usuario.jsp?id=<%=u.getId() %>"><img src="imagens/alterar.png" border="0"></a></td>
                                                         <td align="center"><a href="excluir_usuario.do?id=<%=u.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>	
-                                                       
                                                     </tr>
                                                     <%
                                                 }
