@@ -196,7 +196,7 @@
             
             .footer .desenvolvedor{   
                 padding-bottom: 18px;
-                margin-bottom: 10px;
+                margin-bottom: 12px;
             }
 
           
