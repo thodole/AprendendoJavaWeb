@@ -17,6 +17,8 @@
                 z-index: 1;
             }
             
+            
+            
    
             .dropdown-menu{
                 padding: 5px;
@@ -57,13 +59,38 @@
                color: white;
             }
             
+            .btn-outline-dark{
+                color:white;
+                border-color: white;                
+            }
+            
+            .btn-outline-dark1{
+                background-color: #fe72be;
+                border-color: #fe72be;
+                
+                
+            }
+            
+            .btn-outline-dark1:hover{
+                background-color: #f60b8a;
+                border-color: #af005f;
+                color: white;
+            }
+            
+            .btn-outline-dark:hover{
+                background-color: #f60b8a;
+                border-color: #af005f;
+                
+            }
+            
             .nav-link{
                 color: #fe70bd;
             }
             
-            .nav-link::after{
-                
+            .nav-link:hover{
+                color: #af005f;
             }
+            
             
             .container{
                 margin-top: 110px;
@@ -91,10 +118,12 @@
             
             .faca .faca-txt h3{
                 font-size: 56px;
+                color: #fe48aa;
             }
             
              .faca .faca-txt2 h3{
                 font-size: 56px;
+                color: #fe48aa;
             }
             
             .faca .faca-txt p{
@@ -118,6 +147,7 @@
             
             .depoimentos h3{
                 text-align: center;
+               
                 
             }
             
@@ -132,7 +162,7 @@
             }
             
             .depoimentos .card-item{
-                background-color: #d3e6fd;
+                background-color: whitesmoke;
                 margin: 15px;
                 border-radius: 14px;
                 text-align: center;
@@ -162,11 +192,11 @@
             
             .depoimentos .card-item .star{
                 margin: 15px 0;
-                border-top: 2px solid #cccccc;
+                border-top: 2px solid whitesmoke;
             }
             
             .depoimentos .card-item .star i{
-                color: yellowgreen;
+                color: #ffba00;
                 margin-top: 15px;
                 font-size: 20px;
                      
@@ -196,7 +226,7 @@
             
             .footer .desenvolvedor{   
                 padding-bottom: 18px;
-                margin-bottom: 12px;
+                margin-bottom: 20px;
             }
 
           
@@ -252,7 +282,7 @@
                 <h3>Torne seus cabelos mais lindos</h3>
                 <p>temos os melhores serviços de cabelo,manicúre e pedicúre, para voce se 
                     tornar a mulher perfefeita</p>
-                <button type="button" class="btn btn-outline-dark">Marque seu horário</button>
+                <button type="button" class="btn btn-outline-dark1">Marque seu horário</button>
             </div>
             <div class="faca-img">
                 <img src="imagens/img.jpg" alt="" class="img">
@@ -271,7 +301,7 @@
                 <h3>Texto exemplo</h3>
                 <p>temos os melhores serviços de cabelo,manicúre e pedicúre, para voce se 
                     tornar a mulher perfefeita</p>
-                <button type="button" class="btn btn-outline-dark">Marque seu horário</button>
+                <button type="button" class="btn btn-outline-dark1">Marque seu horário</button>
             </div>
             
         </div>
@@ -358,7 +388,7 @@
             <div class="faca-txt">
                 <h3>Melhor cuidando das suas unhas</h3>
                 <p>As melhores profissionais para cuidar e deixar suas unhas lindas</p>
-                <button type="button" class="btn btn-outline-dark">Marque seu horário</button>
+                <button type="button" class="btn btn-outline-dark1">Marque seu horário</button>
             </div>
             <div class="faca-img">
                 <img src="imagens/img_3.jpg" alt="" class="img">
