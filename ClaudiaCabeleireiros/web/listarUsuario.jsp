@@ -8,22 +8,18 @@
 
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Listar Usuários</title>
     </head>
     <body>
-        <div align="center">
-            <table>
+            
+            <%@include file="cabecalho.jsp"%>
+            
                 <tr>
-                    <td> <%@include file="banner.jsp"%> </td>
-                </tr>
-                <tr>
-                    <td align="center" height="40" valign="top">
-                        <%@include file="menu.jsp"%> 
-                    </td>
-                </tr>
-                <tr>
-                    <td width="760" height="330">
+                    <td>
                         <div align="center">
                             <h2>Lista de Usuários</h2>
                             <h3><a href="formInserirUsuario.jsp"><img src="imagens/novo.png" align="top">Novo Usuário</a></h3>
