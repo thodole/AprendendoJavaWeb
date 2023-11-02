@@ -23,12 +23,6 @@
                             <a class="navbar-brand" href="index.jsp">
                               <img src="imagens/logo.jpg" alt="Logo" width="100%" height="70" class="d-inline-block align-text-top">
                             </a>
-                             <li class="nav-item">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acesso</a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#"><%@include file="menu.jsp"%></a>
-                                </div>
-                              </li>
                             <li class="nav-item">
                               <a class="nav-link active" href="listarUsuario.jsp">Usuário</a>
                             </li>
@@ -41,6 +35,9 @@
                             <li class="nav-item">
                               <a class="nav-link " href="listarCliente.jsp">Cliente</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.jsp" role="button" aria-haspopup="true" aria-expanded="false">Sair</a>
+                             </li>
                           </ul>
                     </table>
                 </div>  

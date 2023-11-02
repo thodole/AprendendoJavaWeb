@@ -1,3 +1,4 @@
+<%@page import="modelo.Usuario"%>
 <%@page import="modelo.UsuarioDAO"%>
 <%@page import="modelo.Perfil"%>
 <%@page import="modelo.PerfilDAO"%>
