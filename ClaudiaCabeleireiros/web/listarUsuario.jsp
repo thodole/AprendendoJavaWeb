@@ -62,7 +62,6 @@
                 </tr>
                 <tr>
                     <td> <%@include file="rodape.jsp"%> </td>
-                    //comentário teste
                 </tr>
             </table>
         </div>
