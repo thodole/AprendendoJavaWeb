@@ -28,6 +28,8 @@ public class ServicoClienteDAO extends DataBaseDAO {
         pst = conn.prepareStatement(sql);
         rs = pst.executeQuery();
         while (rs.next()) {
+            ServicoDAO servicoDB = new ServicoDAO();
+            Servico servico = new Servico();
             ServicoCliente servicoCliente = new ServicoCliente();
             servicoCliente.setId(rs.getInt("id"));
             servicoCliente.setIdServico(rs.getInt("idServico"));
@@ -35,6 +37,10 @@ public class ServicoClienteDAO extends DataBaseDAO {
             servicoCliente.setQuantidade(rs.getInt("quantidade"));
             servicoCliente.setValor_servico(rs.getDouble("valor_servico"));
             servicoCliente.setStatus(rs.getString("status"));
+            servicoDB.conectar();
+            servico = servicoDB.carregarPorId(servicoCliente.getIdServico());
+            servicoDB.desconectar();
+            servicoCliente.setServico(servico);
             lista.add(servicoCliente);
         }
         
@@ -50,6 +56,14 @@ public class ServicoClienteDAO extends DataBaseDAO {
         pst.setInt(3, servicoCliente.getQuantidade());
         pst.setDouble(4, servicoCliente.getValor_servico());
         pst.setInt(3, servicoCliente.getId());
+        pst.execute();
+    }
+    
+    public void deletarServico(ServicoCliente servicoCliente) throws Exception {
+        PreparedStatement pst;
+        String sql = "DELETE FROM servico_cliente WHERE idCliente=?";
+        pst = conn.prepareStatement(sql);
+        pst.setInt(1, servicoCliente.getIdCliente());
         pst.execute();
     }
     

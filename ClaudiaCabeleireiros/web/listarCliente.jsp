@@ -30,6 +30,7 @@
                                     <td>ID</td>
                                     <td>NOME</td>
                                     <td>TELEFONE</td>
+                                    <td>SITUAÇÃO</td>
                                     <td>AGENDA</td>
                                     <td>ALTERAR</td>
                                     <td>EXCLUIR</td>
@@ -46,7 +47,8 @@
                                         <td><%=cliente.getId()%></td>
                                         <td><%=cliente.getNome_cliente()%></td>
                                         <td><%=cliente.getTelefone()%></td>
-                                        <td><a href="formInserirServicoCliente.jsp?id=<%=cliente.getId() %>"><img src="imagens/gerir.png" border="0"></a></td>
+                                        <td><a href="situacaoCliente.jsp?id=<%=cliente.getId() %>"><img src="imagens/gerir.png" border="0"></a></td>
+                                        <td><a href="formInserirServicoCliente.jsp?id=<%=cliente.getId() %>"><img src="imagens/novo.png" border="0"></a></td>
                                         <td><a href="formAlterarCliente.jsp?id=<%=cliente.getId() %>"><img src="imagens/alterar.png"></a></td>
                                         <td><a href="excluirCliente.do?id=<%=cliente.getId() %>"><img src="imagens/excluir.png"></a></td>
                                     </tr>

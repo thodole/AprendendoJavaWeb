@@ -13,6 +13,7 @@ public class ServicoCliente {
     private double valor_servico;
     private String status;
     private Servico servico;
+    private Usuario usuario;
     
 
     public ServicoCliente() {
