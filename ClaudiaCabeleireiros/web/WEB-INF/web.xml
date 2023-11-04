@@ -5,14 +5,6 @@
         <servlet-class>controle.EfetuarLogin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InserirUsuario</servlet-name>
-        <servlet-class>controle.InserirUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AlterarUsuario</servlet-name>
-        <servlet-class>controle.AlterarUsuario</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ExcluirUsuario</servlet-name>
         <servlet-class>controle.ExcluirUsuario</servlet-class>
     </servlet>
@@ -63,14 +55,6 @@
     <servlet-mapping>
         <servlet-name>EfetuarLogin</servlet-name>
         <url-pattern>/efetuarLogin.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InserirUsuario</servlet-name>
-        <url-pattern>/inserirUsuario.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AlterarUsuario</servlet-name>
-        <url-pattern>/alterarUsuario.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExcluirUsuario</servlet-name>
