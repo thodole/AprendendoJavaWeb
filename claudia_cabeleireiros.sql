@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 07:52 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Tempo de geração: 03/11/2023 às 19:50
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `claudia_cabeleireiros`
+-- Banco de dados: `claudia_cabeleireiros`
 --
-CREATE DATABASE IF NOT EXISTS `claudia_cabeleireiros` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `claudia_cabeleireiros` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `claudia_cabeleireiros`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Estrutura para tabela `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nome_cliente` varchar(255) DEFAULT NULL,
+  `telefone` varchar(25) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nome_cliente`, `telefone`) VALUES
+(1, 'Ana Sousa', '61 3387-1451'),
+(3, 'Rui Costa', '61 99316-8441');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `menu`
 --
 
 CREATE TABLE `menu` (
@@ -36,7 +56,7 @@ CREATE TABLE `menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `menu`
+-- Despejando dados para a tabela `menu`
 --
 
 INSERT INTO `menu` (`id`, `nome_menu`, `link`) VALUES
@@ -50,7 +70,21 @@ INSERT INTO `menu` (`id`, `nome_menu`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perfil`
+-- Estrutura para tabela `pagamento`
+--
+
+CREATE TABLE `pagamento` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `idUsuario` int(10) UNSIGNED NOT NULL,
+  `valorTotal` decimal(10,2) DEFAULT NULL,
+  `valorPago` decimal(10,2) DEFAULT NULL,
+  `valorAPagar` decimal(10,2) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `perfil`
 --
 
 CREATE TABLE `perfil` (
@@ -59,19 +93,18 @@ CREATE TABLE `perfil` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `perfil`
+-- Despejando dados para a tabela `perfil`
 --
 
 INSERT INTO `perfil` (`id`, `nome_perfil`) VALUES
 (1, 'Administrador'),
 (2, 'Gerente'),
-(3, 'Profissional'),
-(4, 'Cliente');
+(3, 'Profissional');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perfil_menu`
+-- Estrutura para tabela `perfil_menu`
 --
 
 CREATE TABLE `perfil_menu` (
@@ -80,14 +113,13 @@ CREATE TABLE `perfil_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `perfil_menu`
+-- Despejando dados para a tabela `perfil_menu`
 --
 
 INSERT INTO `perfil_menu` (`idMenu`, `idPerfil`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
-(1, 4),
 (2, 1),
 (2, 2),
 (3, 1),
@@ -99,7 +131,7 @@ INSERT INTO `perfil_menu` (`idMenu`, `idPerfil`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servico`
+-- Estrutura para tabela `servico`
 --
 
 CREATE TABLE `servico` (
@@ -111,7 +143,7 @@ CREATE TABLE `servico` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `servico`
+-- Despejando dados para a tabela `servico`
 --
 
 INSERT INTO `servico` (`id`, `nome_servico`, `descricao`, `duracao`, `valor`) VALUES
@@ -124,69 +156,82 @@ INSERT INTO `servico` (`id`, `nome_servico`, `descricao`, `duracao`, `valor`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servico_cliente`
+-- Estrutura para tabela `servico_cliente`
 --
 
 CREATE TABLE `servico_cliente` (
   `idServico` int(10) UNSIGNED NOT NULL,
-  `idUsuario` int(10) UNSIGNED NOT NULL
+  `idCliente` int(10) UNSIGNED NOT NULL,
+  `quantidade` int(5) DEFAULT NULL,
+  `valor_servico` decimal(7,2) DEFAULT NULL,
+  `id` int(10) NOT NULL,
+  `status` char(1) DEFAULT 'C'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `servico_cliente`
+-- Despejando dados para a tabela `servico_cliente`
 --
 
-INSERT INTO `servico_cliente` (`idServico`, `idUsuario`) VALUES
-(1, 9),
-(2, 9),
-(9, 5);
+INSERT INTO `servico_cliente` (`idServico`, `idCliente`, `quantidade`, `valor_servico`, `id`, `status`) VALUES
+(1, 1, 1, 30.00, 5, 'C'),
+(2, 1, 2, 70.00, 8, 'C'),
+(9, 3, 1, 290.00, 6, 'C');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
   `id` int(10) UNSIGNED NOT NULL,
   `idPerfil` int(10) UNSIGNED NOT NULL,
   `nome_usuario` varchar(255) DEFAULT NULL,
-  `telefone` varchar(13) DEFAULT NULL,
   `login` varchar(20) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `idPerfil`, `nome_usuario`, `telefone`, `login`, `senha`) VALUES
-(1, 1, 'Administrador', '', 'admin', '123'),
-(2, 2, 'Ana Paula', '61 99112-1537', 'ana', '123'),
-(3, 3, 'Bia Motta', '61 98217-0014', 'bia', '123'),
-(4, 3, 'Luiz Diaz', '61 9950-3864', 'luiz', '123'),
-(5, 4, 'Lara Sousa', '61 3591-9422', 'lara', '123'),
-(6, 4, 'Rui Costa', '61 3387-1831', 'rui', '123'),
-(9, 4, 'Ariel Gomes', '61 3387-1282', 'ariel', '123');
+INSERT INTO `usuario` (`id`, `idPerfil`, `nome_usuario`, `login`, `senha`) VALUES
+(1, 1, 'Administrador', 'admin', '$2a$11$.EF6MoQhXh7m98sL4/N/6uD53ARIZmqzjeb8UN2BokTIfGAPZWAeW'),
+(2, 2, 'Ana Paula', 'ana', '$2a$11$OQXC8w1tLYHJU3tBAVyx2eIIvXQp9qwBeuWcFnBpXZNklqwb0rOMi'),
+(3, 3, 'Bia Motta', 'bia', '$2a$11$EIq5nzqGlnDuYoTA3s2uW.xh7QSK.7exhLV02T/mky2APgJrwkdzy'),
+(4, 3, 'Luiz Diaz', 'luiz', '$2a$11$HeitQkVHVfDTIRu2oVCzru2znoIRM.WcWtaoAsxqqKj9IFGA1Gi3a');
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `menu`
+-- Índices de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `perfil`
+-- Índices de tabela `pagamento`
+--
+ALTER TABLE `pagamento`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `perfil_has_usuario_FKIndex1` (`idUsuario`);
+
+--
+-- Índices de tabela `perfil`
 --
 ALTER TABLE `perfil`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `perfil_menu`
+-- Índices de tabela `perfil_menu`
 --
 ALTER TABLE `perfil_menu`
   ADD PRIMARY KEY (`idMenu`,`idPerfil`),
@@ -194,52 +239,70 @@ ALTER TABLE `perfil_menu`
   ADD KEY `perfil_has_menu_FKIndex2` (`idMenu`);
 
 --
--- Indexes for table `servico`
+-- Índices de tabela `servico`
 --
 ALTER TABLE `servico`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `servico_cliente`
+-- Índices de tabela `servico_cliente`
 --
 ALTER TABLE `servico_cliente`
-  ADD PRIMARY KEY (`idServico`,`idUsuario`),
-  ADD KEY `perfil_has_menu_FKIndex1` (`idUsuario`),
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `perfil_has_menu_FKIndex1` (`idCliente`),
   ADD KEY `perfil_has_menu_FKIndex2` (`idServico`);
 
 --
--- Indexes for table `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `menu`
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `perfil`
+-- AUTO_INCREMENT de tabela `pagamento`
+--
+ALTER TABLE `pagamento`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `perfil`
 --
 ALTER TABLE `perfil`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `servico`
+-- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `servico_cliente`
+--
+ALTER TABLE `servico_cliente`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
