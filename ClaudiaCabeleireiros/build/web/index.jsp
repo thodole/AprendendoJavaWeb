@@ -41,8 +41,8 @@
                 </div>
                         <section class="banner">
                             <div class="banner-text">
-                                <h1> Claúdia Cabelereiros</h1>
-                                <p>Onde a Beleza se Encontra com o Bem-Estar</p>
+                                <h1> CLÁUDIA CABELEREIROS</h1>
+                                <p>Onde a beleza se encontra com o bem-estar</p>
                                 <button type="button" class="btn btn-outline-dark">Marque seu horário</button>
                             </div>
                         </section>

@@ -2,7 +2,9 @@
     Created on : 02/11/2023, 12:07:00
     Author     : rafaa
 */
-
+body{
+    font-family: Westbake;
+}
 .fundo {
                 background-image:url('../imagens/banner.jpg');    
                 background-size:cover;

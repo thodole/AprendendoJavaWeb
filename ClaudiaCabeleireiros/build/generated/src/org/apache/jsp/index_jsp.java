@@ -68,7 +68,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <table>\r\n");
       out.write("                        <ul class=\"nav justify-content-end\">\r\n");
       out.write("                            <a class=\"navbar-brand\" href=\"#\">\r\n");
-      out.write("                              <img src=\"imagens/logo.jpg\" alt=\"Logo\" width=\"100%\" height=\"70\" class=\"d-inline-block align-text-top\">\r\n");
+      out.write("                              <img src=\"imagens/logo_semfundo.png\" alt=\"Logo\" width=\"100%\" height=\"50\"  class=\"d-inline-block align-text-top\">\r\n");
       out.write("                            </a>\r\n");
       out.write("                             <li class=\"nav-item\">\r\n");
       out.write("                                <a class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Acesso</a>\r\n");
@@ -233,7 +233,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                  ");
       out.write("\r\n");
       out.write("                <div class=\"card-item\">\r\n");
-      out.write("                    <img src=\"imagens/card3.jpg\">\r\n");
+      out.write("                    <img src=\"imagens/card3.png\">\r\n");
       out.write("                    <p class=\"n-user\">Maria Cristina</p>\r\n");
       out.write("                    <p class=\"depoimento-user\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n");
       out.write("                        Proin quis ligula quis ex tempor ullamcorper. Integer eu auctor diam. \r\n");
