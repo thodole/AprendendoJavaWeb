@@ -3,6 +3,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UsuarioDAO extends DataBaseDAO {
 
@@ -11,13 +12,12 @@ public class UsuarioDAO extends DataBaseDAO {
 
     public void inserir(Usuario usuario) throws Exception {
         PreparedStatement pst;
-        String sql = "INSERT INTO usuario (idPerfil,nome_usuario,telefone,login,senha) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO usuario (idPerfil,nome_usuario,login,senha) VALUES(?,?,?,?)";
         pst = conn.prepareStatement(sql);
         pst.setInt(1, usuario.getIdPerfil());
         pst.setString(2, usuario.getNome_usuario());
-        pst.setString(3, usuario.getTelefone());
-        pst.setString(4, usuario.getLogin());
-        pst.setString(5, usuario.getSenha());
+        pst.setString(3, usuario.getLogin());
+        pst.setString(4, usuario.getSenha());
         pst.execute();
     }
     
@@ -31,7 +31,7 @@ public class UsuarioDAO extends DataBaseDAO {
         rs = pst.executeQuery();
         Usuario usuario = new Usuario();
         if (rs.next()) {
-            if (senha.equals(rs.getString("senha"))) {
+            if (BCrypt.checkpw(senha, rs.getString("senha"))) {
                 
                 usuario.setId(rs.getInt("id"));
                 usuario.setIdPerfil(rs.getInt("idPerfil"));
@@ -64,7 +64,6 @@ public class UsuarioDAO extends DataBaseDAO {
             Perfil perfil = new Perfil();
             usuario.setId(rs.getInt("id"));
             usuario.setNome_usuario(rs.getString("nome_usuario"));
-            usuario.setTelefone(rs.getString("telefone"));
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setIdPerfil(rs.getInt("idPerfil"));
@@ -92,7 +91,6 @@ public class UsuarioDAO extends DataBaseDAO {
         pst = conn.prepareStatement(sql);
         pst.setInt(1, usuario.getIdPerfil());
         pst.setString(2, usuario.getNome_usuario());
-        pst.setString(3, usuario.getTelefone());
         pst.setString(4, usuario.getLogin());
         pst.setString(5, usuario.getSenha());
         pst.setInt(6, usuario.getId());
@@ -111,7 +109,6 @@ public class UsuarioDAO extends DataBaseDAO {
             usuario.setId(rs.getInt("id"));
             usuario.setIdPerfil(rs.getInt("idPerfil"));
             usuario.setNome_usuario(rs.getString("nome_usuario"));
-            usuario.setTelefone(rs.getString("telefone"));
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             PerfilDAO perfilBD = new PerfilDAO();
@@ -123,64 +120,6 @@ public class UsuarioDAO extends DataBaseDAO {
         }
         
         return usuario;
-    }
-    
-    public ArrayList<Servico> servicosVinculados(int idUsuario) throws Exception {
-        ArrayList<Servico> lista = new ArrayList<Servico>();
-        PreparedStatement pst;
-        ResultSet rs;
-        String sql = "SELECT * FROM servico WHERE id IN(SELECT idServico FROM servico_cliente WHERE idUsuario=?)";
-        pst = conn.prepareStatement(sql);
-        pst.setInt(1, idUsuario);
-        rs = pst.executeQuery();
-        while (rs.next()) {
-            Servico servico = new Servico();
-            servico.setId(rs.getInt("id"));
-            servico.setNome_servico(rs.getString("nome_servico"));
-            servico.setDuracao(rs.getString("duracao"));
-            servico.setValor(rs.getDouble("valor"));
-            lista.add(servico);
-        }
-
-        return lista;
-    }
-    
-    public ArrayList<Servico> servicosDesvinculados(int idUsuario) throws Exception {
-        ArrayList<Servico> lista = new ArrayList<Servico>();
-        PreparedStatement pst;
-        ResultSet rs;
-        String sql = "SELECT * FROM servico WHERE id NOT IN(SELECT idServico FROM servico_cliente WHERE idUsuario=?)";
-        pst = conn.prepareStatement(sql);
-        pst.setInt(1, idUsuario);
-        rs = pst.executeQuery();
-        while (rs.next()) {
-            Servico servico = new Servico();
-            servico.setId(rs.getInt("id"));
-            servico.setNome_servico(rs.getString("nome_servico"));
-            servico.setDuracao(rs.getString("duracao"));
-            servico.setValor(rs.getDouble("valor"));
-            lista.add(servico);
-        }
-
-        return lista;
-    }
-
-    public void vincularServico(int idServico, int idUsuario) throws Exception {
-        PreparedStatement pst;
-        String sql = "INSERT INTO servico_cliente (idServico, idUsuario) VALUES(?,?)";
-        pst = conn.prepareStatement(sql);
-        pst.setInt(1, idServico);
-        pst.setInt(2, idUsuario);
-        pst.execute();
-    }
-
-    public void desvincularServico(int idServico, int idUsuario) throws Exception {
-        PreparedStatement pst;
-        String sql = "DELETE FROM servico_cliente WHERE idServico=? AND idUsuario=?";
-        pst = conn.prepareStatement(sql);
-        pst.setInt(1, idServico);
-        pst.setInt(2, idUsuario);
-        pst.execute();
     }
     
 }

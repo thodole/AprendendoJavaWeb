@@ -1,18 +1,15 @@
 package controle;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
-import org.mindrot.jbcrypt.BCrypt;
+import modelo.Pagamento;
+import modelo.PagamentoDAO;
 
-public class AlterarUsuario extends HttpServlet {
+public class AlterarPagamento extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
@@ -21,41 +18,37 @@ public class AlterarUsuario extends HttpServlet {
             try {
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet AlterarUsuario</title>");  
+                out.println("<title>Servlet AlterarPagamento</title>");  
                 out.println("</head>");
                 out.println("<body>");
 
-                int id = Integer.parseInt(request.getParameter("id"));
-                int idPerfil = Integer.parseInt(request.getParameter("idPerfil"));
-                String nome_usuario = request.getParameter("nome_usuario");
-                String login = request.getParameter("login");
-                String senha = request.getParameter("senha");
-            
-                if (nome_usuario == null || nome_usuario.equals("")) {
-                    out.print("O campo Nome deve ser preenchido!");
-                } else if (login == null || login.equals("")) {
-                    out.print("O campo Login deve ser preenchido!");
-                } else if (senha == null || senha.equals("")) {
-                    out.print("O campo Senha deve ser preenchido!");
-                } else if (idPerfil < 1) {
-                    out.print("O campo Perfil deve ser preenchido!");
-                } else if (id < 1) {
-                    out.print("O ID do usuário não foi encontrado!");
+                int idPagamento = Integer.parseInt(request.getParameter("idPagamento"));
+                int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                Double valorPago = Double.parseDouble(request.getParameter("valorPago"));
+                Double valorAPagar = Double.parseDouble(request.getParameter("valorAPagar"));
+                Double pagar = Double.parseDouble(request.getParameter("pagar"));
+                
+                if (idPagamento < 0) {
+                    out.print("Pagamento não encontrado!");
+                } if (idCliente < 0) {
+                    out.print("Cliente não encontrado!");
+                } if (valorAPagar == 0) {
+                    out.print("Não existe valor a pagar!");
+                } if (pagar <= 0) {
+                    out.print("Digite um valor maior que zero no campo Pagar!");
                 } else {
                     try {
-                        Usuario usuario = new Usuario();
-                        usuario.setId(id);
-                        usuario.setIdPerfil(idPerfil);
-                        usuario.setNome_usuario(nome_usuario);
-                        usuario.setLogin(login);
-                        usuario.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt(11)));
-                        UsuarioDAO usuarioBD = new UsuarioDAO();
-                        usuarioBD.conectar();
-                        usuarioBD.alterar(usuario);
-                        usuarioBD.desconectar();
+                        Pagamento pagamento = new Pagamento();
+                        pagamento.setId(idPagamento);
+                        pagamento.setValorPago(valorPago + pagar);
+                        pagamento.setValorAPagar(valorAPagar - pagar);
+                        PagamentoDAO pagamentoBD = new PagamentoDAO();
+                        pagamentoBD.conectar();
+                        pagamentoBD.alterar(pagamento);
+                        pagamentoBD.desconectar();
                         out.print("<script language='javascript'>");
-                        out.print("alert('Usuário alterado com sucesso.');");
-                        out.print("location.href='listarUsuario.jsp';");
+                        out.print("alert('Pagamento efetuado com sucesso.');");
+                        out.print("location.href='situacaoCliente.jsp?id="+idCliente+"';");
                         out.print("</script>");
                         
                     } catch (Exception erro) {

@@ -57,8 +57,32 @@
         <servlet-class>controle.ExcluirServico</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GerirServicoCliente</servlet-name>
-        <servlet-class>controle.GerirServicoCliente</servlet-class>
+        <servlet-name>InserirPagamento</servlet-name>
+        <servlet-class>controle.InserirPagamento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarCliente</servlet-name>
+        <servlet-class>controle.AlterarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirCliente</servlet-name>
+        <servlet-class>controle.ExcluirCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirCliente</servlet-name>
+        <servlet-class>controle.InserirCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirServicoCliente</servlet-name>
+        <servlet-class>controle.InserirServicoCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirServicoCliente</servlet-name>
+        <servlet-class>controle.ExcluirServicoCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarPagamento</servlet-name>
+        <servlet-class>controle.AlterarPagamento</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EfetuarLogin</servlet-name>
@@ -117,8 +141,32 @@
         <url-pattern>/excluirServico.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GerirServicoCliente</servlet-name>
-        <url-pattern>/gerirServicoCliente.do</url-pattern>
+        <servlet-name>InserirPagamento</servlet-name>
+        <url-pattern>/inserirPagamento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarCliente</servlet-name>
+        <url-pattern>/alterarCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirCliente</servlet-name>
+        <url-pattern>/excluirCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirCliente</servlet-name>
+        <url-pattern>/inserirCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirServicoCliente</servlet-name>
+        <url-pattern>/inserirServicoCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirServicoCliente</servlet-name>
+        <url-pattern>/excluirServicoCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarPagamento</servlet-name>
+        <url-pattern>/alterarPagamento.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

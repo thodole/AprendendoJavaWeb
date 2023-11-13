@@ -1,17 +1,17 @@
 package controle;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
+import modelo.Pagamento;
+import modelo.PagamentoDAO;
+import modelo.ServicoCliente;
+import modelo.ServicoClienteDAO;
 
-public class InserirUsuario extends HttpServlet {
+public class InserirPagamento extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -20,40 +20,38 @@ public class InserirUsuario extends HttpServlet {
         try {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirUsuario</title>");
+            out.println("<title>Servlet InserirPagamento</title>");
             out.println("</head>");
             out.println("<body>");
 
-            int idPerfil = Integer.parseInt(request.getParameter("idPerfil"));
-            String nome_usuario = request.getParameter("nome_usuario");
-            String telefone = request.getParameter("telefone");
-            String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
-
-            if (nome_usuario == null || nome_usuario.equals("")) {
-                out.print("O campo Nome deve ser preenchido!");
-            } else if (telefone == null || telefone.equals("")) {
-                out.print("O campo Telefone deve ser preenchido!");
-            } else if (login == null || login.equals("")) {
-                out.print("O campo Login deve ser preenchido!");
-            } else if (senha == null || senha.equals("")) {
-                out.print("O campo Senha deve ser preenchido!");
-            } else if (idPerfil < 1) {
-                out.print("Um Perfil deve ser selecionado!");
+            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+            double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
+            double valorPago = Double.parseDouble(request.getParameter("valorPago"));
+                        
+            if (valorTotal <= 0) {
+                out.print("Não há valor a ser pago!");
+            } else if (valorPago < 0) {
+                out.print("O Valor Pago deve ser acima de zero!");
             } else {
                 try {
-                    Usuario usuario = new Usuario();
-                    usuario.setIdPerfil(idPerfil);
-                    usuario.setNome_usuario(nome_usuario);
-                    usuario.setLogin(login);
-                    usuario.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt(11)));
-                    UsuarioDAO usuarioBD = new UsuarioDAO();
-                    usuarioBD.conectar();
-                    usuarioBD.inserir(usuario);
-                    usuarioBD.desconectar();
+                    ServicoCliente servicoCliente = new ServicoCliente();
+                    servicoCliente.setIdCliente(idCliente);
+                    Pagamento pagamento = new Pagamento();
+                    pagamento.setIdCliente(idCliente);
+                    pagamento.setValorTotal(valorTotal);
+                    pagamento.setValorPago(valorPago);
+                    pagamento.setValorAPagar(valorTotal - valorPago);
+                    PagamentoDAO pagamentoBD = new PagamentoDAO();
+                    ServicoClienteDAO servicoClienteBD = new ServicoClienteDAO();
+                    pagamentoBD.conectar();
+                    pagamentoBD.inserir(pagamento);
+                    pagamentoBD.desconectar();
+                    servicoClienteBD.conectar();
+                    servicoClienteBD.deletarServico(servicoCliente);
+                    servicoClienteBD.desconectar();
                     out.print("<script language='javascript'>");
-                    out.print("alert('Usuário inserido com sucesso.');");
-                    out.print("location.href='formInserirUsuario.jsp';");
+                    out.print("alert('Pagamento inserido com sucesso.');");
+                    out.print("location.href='situacaoCliente.jsp?id="+idCliente+"';");
                     out.print("</script>");
                 } catch (Exception erro) {
                     out.print(erro);

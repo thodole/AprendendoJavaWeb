@@ -1,18 +1,15 @@
 package controle;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
-import org.mindrot.jbcrypt.BCrypt;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 
-public class AlterarUsuario extends HttpServlet {
+public class AlterarCliente extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
@@ -21,41 +18,31 @@ public class AlterarUsuario extends HttpServlet {
             try {
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet AlterarUsuario</title>");  
+                out.println("<title>Servlet AlterarCliente</title>");  
                 out.println("</head>");
                 out.println("<body>");
 
                 int id = Integer.parseInt(request.getParameter("id"));
-                int idPerfil = Integer.parseInt(request.getParameter("idPerfil"));
-                String nome_usuario = request.getParameter("nome_usuario");
-                String login = request.getParameter("login");
-                String senha = request.getParameter("senha");
-            
-                if (nome_usuario == null || nome_usuario.equals("")) {
+                String nome_cliente = request.getParameter("nome_cliente");
+                String telefone = request.getParameter("telefone");
+                
+                if (nome_cliente == null || nome_cliente.equals("")) {
                     out.print("O campo Nome deve ser preenchido!");
-                } else if (login == null || login.equals("")) {
-                    out.print("O campo Login deve ser preenchido!");
-                } else if (senha == null || senha.equals("")) {
-                    out.print("O campo Senha deve ser preenchido!");
-                } else if (idPerfil < 1) {
-                    out.print("O campo Perfil deve ser preenchido!");
-                } else if (id < 1) {
-                    out.print("O ID do usuário não foi encontrado!");
+                } if (telefone == null || telefone.equals("")) {
+                    out.print("O campo Telefone deve ser preenchido!");
                 } else {
                     try {
-                        Usuario usuario = new Usuario();
-                        usuario.setId(id);
-                        usuario.setIdPerfil(idPerfil);
-                        usuario.setNome_usuario(nome_usuario);
-                        usuario.setLogin(login);
-                        usuario.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt(11)));
-                        UsuarioDAO usuarioBD = new UsuarioDAO();
-                        usuarioBD.conectar();
-                        usuarioBD.alterar(usuario);
-                        usuarioBD.desconectar();
+                        Cliente cliente = new Cliente();
+                        cliente.setId(id);
+                        cliente.setNome_cliente(nome_cliente);
+                        cliente.setTelefone(telefone);
+                        ClienteDAO clienteBD = new ClienteDAO();
+                        clienteBD.conectar();
+                        clienteBD.alterar(cliente);
+                        clienteBD.desconectar();
                         out.print("<script language='javascript'>");
-                        out.print("alert('Usuário alterado com sucesso.');");
-                        out.print("location.href='listarUsuario.jsp';");
+                        out.print("alert('Cliente alterado com sucesso.');");
+                        out.print("location.href='listarCliente.jsp';");
                         out.print("</script>");
                         
                     } catch (Exception erro) {
