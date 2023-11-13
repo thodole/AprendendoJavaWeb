@@ -21,7 +21,7 @@
                     <table>
                         <ul class="nav justify-content-end">
                             <a class="navbar-brand" href="index.jsp">
-                              <img src="imagens/logo.jpg" alt="Logo" width="100%" height="70" class="d-inline-block align-text-top">
+                              <img src="imagens/logo.png" alt="Logo" width="100%" height="50" class="d-inline-block align-text-top">
                             </a>
                             <li class="nav-item">
                               <a class="nav-link active" href="listarUsuario.jsp">Usuário</a>

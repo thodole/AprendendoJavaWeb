@@ -20,19 +20,10 @@
             }
         </script>
     </head>
+    
     <body>
         <div align="center">
-            <table>
-                <tr>
-                    <td> <%@include file="banner.jsp"%> </td>
-                </tr>
-                <tr>
-                    <td align="center" height="40" valign="top">
-                        <%@include file="menu.jsp"%>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="760" height="330">
+            <%@include file="cabecalho.jsp"%>
                         <div align="center">
                             <h2>Alterar Perfil</h2>
                             <form name="formAlterarPerfil" action="alterarPerfil.do" method="post" onsubmit="return validaForm();">

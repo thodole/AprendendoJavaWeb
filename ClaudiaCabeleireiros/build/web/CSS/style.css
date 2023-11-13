@@ -19,9 +19,12 @@
                 padding: 5px;
             }
             
-            a.navbar-brand{
-                margin-right: 50%;
+            .navbar-brand{
+                margin-right: 45%;
+                margin-top: 5px;
+                
             }
+            
             
             .nav-item{
                 padding-top: 18px; 

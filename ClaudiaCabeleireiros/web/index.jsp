@@ -16,7 +16,7 @@
                     <table>
                         <ul class="nav justify-content-end">
                             <a class="navbar-brand" href="#">
-                              <img src="imagens/logo.jpg" alt="Logo" width="100%" height="70" class="d-inline-block align-text-top">
+                              <img src="imagens/logo_semfundo.png" alt="Logo" width="100%" height="50"  class="d-inline-block align-text-top">
                             </a>
                              <li class="nav-item">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acesso</a>
@@ -132,7 +132,7 @@
                  
                   <%-- card item 3 --%>
                 <div class="card-item">
-                    <img src="imagens/card3.jpg">
+                    <img src="imagens/card3.png">
                     <p class="n-user">Maria Cristina</p>
                     <p class="depoimento-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                         Proin quis ligula quis ex tempor ullamcorper. Integer eu auctor diam. 
