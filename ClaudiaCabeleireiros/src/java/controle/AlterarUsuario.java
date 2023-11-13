@@ -1,7 +1,5 @@
 package controle;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class AlterarUsuario extends HttpServlet {
 
@@ -28,11 +25,14 @@ public class AlterarUsuario extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 int idPerfil = Integer.parseInt(request.getParameter("idPerfil"));
                 String nome_usuario = request.getParameter("nome_usuario");
+                String telefone = request.getParameter("telefone");
                 String login = request.getParameter("login");
                 String senha = request.getParameter("senha");
             
                 if (nome_usuario == null || nome_usuario.equals("")) {
                     out.print("O campo Nome deve ser preenchido!");
+                } else if (telefone == null || telefone.equals("")) {
+                    out.print("O campo Telefone deve ser preenchido!");
                 } else if (login == null || login.equals("")) {
                     out.print("O campo Login deve ser preenchido!");
                 } else if (senha == null || senha.equals("")) {
@@ -47,8 +47,9 @@ public class AlterarUsuario extends HttpServlet {
                         usuario.setId(id);
                         usuario.setIdPerfil(idPerfil);
                         usuario.setNome_usuario(nome_usuario);
+                        usuario.setTelefone(telefone);
                         usuario.setLogin(login);
-                        usuario.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt(11)));
+                        usuario.setSenha(senha);
                         UsuarioDAO usuarioBD = new UsuarioDAO();
                         usuarioBD.conectar();
                         usuarioBD.alterar(usuario);

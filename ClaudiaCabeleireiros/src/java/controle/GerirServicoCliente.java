@@ -6,11 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.ServicoCliente;
-import modelo.ServicoClienteDAO;
+import modelo.UsuarioDAO;
 
-
-public class InserirServicoCliente extends HttpServlet {
+public class GerirServicoCliente extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
@@ -19,48 +17,39 @@ public class InserirServicoCliente extends HttpServlet {
         try {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirServicoCliente</title>");
+            out.println("<title>Servlet GerirServicoCliente</title>");
             out.println("</head>");
             out.println("<body>");
 
+            try {
+                String opcao = request.getParameter("opcao");
                 int idServico = Integer.parseInt(request.getParameter("idServico"));
-                int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-                int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-                double valor_servico = Double.parseDouble(request.getParameter("valor_servico"));
+                int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 
-            if (idServico < 1) {
-                out.print("Selecione um Serviço!");
-            } else if (idCliente < 1) {
-                out.print("Cliente não encontrado!");
-            } else if (quantidade < 0) {
-                out.print("Defina a quantidade!");
-            } else if (valor_servico <= 0) {
-                out.print("Valor não definido!");
-            } else {
-                try {
-                    ServicoCliente servicoCliente = new ServicoCliente();
-                    servicoCliente.setIdServico(idServico);
-                    servicoCliente.setIdCliente(idCliente);
-                    servicoCliente.setQuantidade(quantidade);
-                    servicoCliente.setValor_servico(valor_servico*quantidade);
-                    ServicoClienteDAO servicoClienteBD = new ServicoClienteDAO();
-                    servicoClienteBD.conectar();
-                    servicoClienteBD.inserir(servicoCliente);
-                    servicoClienteBD.desconectar();
-                    out.print("<script language='javascript'>");
-                    out.print("alert('Serviço incluído com sucesso.');");
-                    out.print("location.href='formInserirServicoCliente.jsp?id="+idCliente+"';");
-                    out.print("</script>");
-                } catch (Exception erro) {
-                    out.print(erro);
+                UsuarioDAO usuarioBD = new UsuarioDAO();
+                usuarioBD.conectar();
+                
+                String mensagem = "Serviço incluído com sucesso.";
+                if (opcao.equals("incluir")) {
+                    usuarioBD.vincularServico(idServico, idUsuario);
+                } else if (opcao.equals("excluir")) {
+                    usuarioBD.desvincularServico(idServico, idUsuario);
+                    mensagem = "Serviço excluído com sucesso.";
                 }
+                usuarioBD.desconectar();
+                out.print("<script language='javascript'>");
+                out.print("alert('"+mensagem+"');");
+                out.print("location.href='formGerirServicoCliente.jsp?id="+idUsuario+"';");
+                out.print("</script>");
 
+            } catch (Exception e) {
+                out.print(e);
             }
 
             out.println("</body>");
             out.println("</html>");
 
-        } finally { 
+        } finally {
             out.close();
         }
     }

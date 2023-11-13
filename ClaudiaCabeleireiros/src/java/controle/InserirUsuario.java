@@ -1,7 +1,5 @@
 package controle;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -45,8 +43,9 @@ public class InserirUsuario extends HttpServlet {
                     Usuario usuario = new Usuario();
                     usuario.setIdPerfil(idPerfil);
                     usuario.setNome_usuario(nome_usuario);
+                    usuario.setTelefone(telefone);
                     usuario.setLogin(login);
-                    usuario.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt(11)));
+                    usuario.setSenha(senha);
                     UsuarioDAO usuarioBD = new UsuarioDAO();
                     usuarioBD.conectar();
                     usuarioBD.inserir(usuario);
