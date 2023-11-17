@@ -35,9 +35,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="760" height="330">
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Novo Menu</h2>
+                            <h2>NOVO MENU</h2>
                             <form name="formInserirMenu" action="inserirMenu.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                                     <tr>

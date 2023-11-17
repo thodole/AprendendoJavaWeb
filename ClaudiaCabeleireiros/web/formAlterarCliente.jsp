@@ -1,5 +1,5 @@
-<%@page import="modelo.Menu"%>
-<%@page import="modelo.MenuDAO"%>
+<%@page import="modelo.Cliente"%>
+<%@page import="modelo.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
@@ -8,15 +8,15 @@
         <title>Alterar Menu</title>
         <script language="javascript" >
             function validaForm(){
-                formulario = document.formAlterarMenu;
-                if(formulario.nome_menu.value==""){
+                formulario = document.formAlterarCliente;
+                if(formulario.nome_cliente.value==""){
                     alert("O campo Nome deve ser preenchido!");
-                    formulario.nome_menu.focus();
+                    formulario.nome_cliente.focus();
                     return false;
                 }
-                if(formulario.link.value==""){
-                    alert("O campo Link deve ser preenchido!");
-                    formulario.link.focus();
+                if(formulario.telefone.value==""){
+                    alert("O campo Telefone deve ser preenchido!");
+                    formulario.telefone.focus();
                     return false;
                 }
                 
@@ -38,29 +38,29 @@
                 <tr>
                     <td width="760" height="100">
                         <div align="center">
-                            <h2>ALTERAR MENU</h2>
-                            <form name="formAlterarMenu" action="alterarMenu.do" method="post" onsubmit="return validaForm();">
+                            <h2>ALTERAR CLIENTE</h2>
+                            <form name="formAlterarCliente" action="alterarCliente.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                             <%
                                 int id = Integer.parseInt(request.getParameter("id"));
                                     try {
-                                        MenuDAO menuBD = new MenuDAO();
-                                        menuBD.conectar();
-                                        Menu menu = menuBD.carregarPorId(id);
-                                        menuBD.desconectar();
-                                        if (menu.getId() > 0){
+                                        ClienteDAO clienteBD = new ClienteDAO();
+                                        clienteBD.conectar();
+                                        Cliente cliente = clienteBD.carregarPorId(id);
+                                        clienteBD.desconectar();
+                                        if (cliente.getId() > 0){
                             %>
                                 <tr>
                                     <td>ID:</td>
-                                    <td><%=menu.getId() %> <input type="hidden" name="id" value="<%=menu.getId() %>"></td>
+                                    <td><%=cliente.getId() %> <input type="hidden" name="id" value="<%=cliente.getId() %>"></td>
                                 </tr>
                                 <tr>
                                     <td>Nome:</td>
-                                    <td><input type="text" name="nome_menu" value="<%=menu.getNome_menu()%>" size="30"></td>
+                                    <td><input type="text" name="nome_cliente" value="<%=cliente.getNome_cliente()%>" size="30"></td>
                                 </tr>
                                 <tr>
-                                    <td>Link:</td>
-                                    <td><input type="text" name="link" value="<%=menu.getLink() %>"  size="30"/></td>
+                                    <td>Telefone:</td>
+                                    <td><input type="text" name="telefone" value="<%=cliente.getTelefone()%>"  size="30"/></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -84,3 +84,4 @@
         </div>
     </body>
 </html>
+

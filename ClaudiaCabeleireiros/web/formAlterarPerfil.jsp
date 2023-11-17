@@ -23,9 +23,31 @@
     
     <body>
         <div align="center">
+<<<<<<< Updated upstream
             <%@include file="cabecalho.jsp"%>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <table>
+                <tr>
+                    <td> <%@include file="banner.jsp"%> </td>
+                </tr>
+                <tr>
+                    <td align="center" height="40" valign="top">
+                        <%@include file="menu.jsp"%>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="760" height="100">
+=======
+            <%@include file="cabecalho.jsp"%>
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101
+=======
+            <%@include file="cabecalho.jsp"%>
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101
+>>>>>>> Stashed changes
                         <div align="center">
-                            <h2>Alterar Perfil</h2>
+                            <h2>ALTERAR PERFIL</h2>
                             <form name="formAlterarPerfil" action="alterarPerfil.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                             <%

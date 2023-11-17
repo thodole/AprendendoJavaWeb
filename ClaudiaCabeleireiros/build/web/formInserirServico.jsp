@@ -45,9 +45,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="760" height="330">
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Novo Serviço</h2>
+                            <h2>NOVO SERVIÇO</h2>
                             <form name="formInserirServico" action="inserirServico.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                                     <tr>

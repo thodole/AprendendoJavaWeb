@@ -1,5 +1,5 @@
-<%@page import="modelo.Menu"%>
-<%@page import="modelo.MenuDAO"%>
+<%@page import="modelo.Pagamento"%>
+<%@page import="modelo.PagamentoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listar Menus</title>
+        <title>Vendas Realizadas</title>
     </head>
     <body>
         <div align="center">
@@ -23,35 +23,28 @@
                 <tr>
                     <td width="760" height="100">
                         <div align="center">
-                            <h2>LISTA DE MENUS</h2>
-                            <h3><a href="formInserirMenu.jsp"><img src="imagens/novo.png" align="top">Novo Menu</a></h3>
+                            <h2>VENDAS REALIZADAS</h2>
                             <table width="800" border="1">
                                 <tr align="center" bgcolor="#d3d3d3">
-                                    <td>NOME</td>
-                                    <td>LINK</td>
-                                    <td>ALTERAR</td>
-                                    <td>EXCLUIR</td>
+                                    <td>ID</td>
+                                    <td>CLIENTE CONTRATANTE</td>
+                                    <td>TOTAL DOS SERVIÇOS</td>
                                 </tr>
                                 <%                                            
-                                    try {
-                                        MenuDAO menuBD = new MenuDAO();
-                                        ArrayList<Menu> lista;
-                                        menuBD.conectar();
-                                        lista = menuBD.listar();
-                                        for(Menu menu:lista){
+                                    PagamentoDAO pagamentoBD = new PagamentoDAO();
+                                    ArrayList<Pagamento> lista;
+                                    pagamentoBD.conectar();
+                                    lista = pagamentoBD.listar();
+                                    for(Pagamento pagamento : lista){
+                                        if(pagamento.getValorAPagar() == 0) {
                                 %>
                                     <tr align="center">
-                                        <td><%=menu.getNome_menu()%></td>
-                                        <td><%=menu.getLink() %></td>
-                                        <td><a href="formAlterarMenu.jsp?id=<%=menu.getId() %>"><img src="imagens/alterar.png" border="0"></a></td>
-                                        <td><a href="excluirMenu.do?id=<%=menu.getId() %>"><img src="imagens/excluir.png" border="0"></a></td>
+                                        <td><%=pagamento.getId()%></td>
+                                        <td><%=pagamento.getCliente()%></td>
+                                        <td><%=pagamento.getValorTotal()%></td>
                                     </tr>
                                 <%
                                         }
-                                        menuBD.desconectar();
-
-                                    } catch (Exception erro) {
-                                        out.print(erro);
                                     }
                                 %>
                             </table>

@@ -24,6 +24,53 @@ public class GerirServicoCliente extends HttpServlet {
             try {
                 String opcao = request.getParameter("opcao");
                 int idServico = Integer.parseInt(request.getParameter("idServico"));
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD:ClaudiaCabeleireiros/src/java/controle/InserirServicoCliente.java
+                int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                String quantidade = request.getParameter("quantidade");
+                double valor_servico = Double.parseDouble(request.getParameter("valor_servico"));
+
+            if (idServico < 1) {
+                out.print("Selecione um Serviço!");
+            } else if (idCliente < 1) {
+                out.print("Cliente não encontrado!");
+            } else if (quantidade == null || quantidade.equals("")) {
+                out.print("<script language='javascript'>");
+                    out.print("alert('Quantidade inválida!');");
+                    out.print("location.href='formInserirServicoCliente.jsp?id="+idCliente+"';");
+                    out.print("</script>");
+            } else if (valor_servico <= 0) {
+                out.print("Valor não definido!");
+            } else {
+                int quantidade2 = Integer.parseInt(request.getParameter("quantidade"));
+                    if (quantidade2 <= 0) {
+                        out.print("<script language='javascript'>");
+                        out.print("alert('Quantidade inválida!');");
+                        out.print("location.href='formInserirServicoCliente.jsp?id="+idCliente+"';");
+                        out.print("</script>");
+                    } else {
+                        try {
+                            ServicoCliente servicoCliente = new ServicoCliente();
+                            servicoCliente.setIdServico(idServico);
+                            servicoCliente.setIdCliente(idCliente);
+                            servicoCliente.setQuantidade(quantidade2);
+                            servicoCliente.setValor_servico(valor_servico*quantidade2);
+                            ServicoClienteDAO servicoClienteBD = new ServicoClienteDAO();
+                            servicoClienteBD.conectar();
+                            servicoClienteBD.inserir(servicoCliente);
+                            servicoClienteBD.desconectar();
+                            out.print("<script language='javascript'>");
+                            out.print("alert('Serviço incluído com sucesso.');");
+                            out.print("location.href='formInserirServicoCliente.jsp?id="+idCliente+"';");
+                            out.print("</script>");
+                        } catch (Exception erro) {
+                            out.print(erro);
+                        }
+
+                    }
+=======
+>>>>>>> Stashed changes
                 int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 
                 UsuarioDAO usuarioBD = new UsuarioDAO();
@@ -45,12 +92,28 @@ public class GerirServicoCliente extends HttpServlet {
             } catch (Exception e) {
                 out.print(e);
             }
+<<<<<<< Updated upstream
 
             out.println("</body>");
             out.println("</html>");
 
         } finally {
             out.close();
+=======
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101:ClaudiaCabeleireiros/src/java/controle/GerirServicoCliente.java
+
+                    out.println("</body>");
+                    out.println("</html>");
+
+<<<<<<< HEAD:ClaudiaCabeleireiros/src/java/controle/InserirServicoCliente.java
+        }
+            } finally { 
+                out.close();
+=======
+        } finally {
+            out.close();
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101:ClaudiaCabeleireiros/src/java/controle/GerirServicoCliente.java
+>>>>>>> Stashed changes
         }
     }
 

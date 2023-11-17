@@ -21,9 +21,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="760" height="330">
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Lista de Menus</h2>
+                            <h2>LISTA DE MENUS</h2>
                             <h3><a href="formInserirMenu.jsp"><img src="imagens/novo.png" align="top">Novo Menu</a></h3>
                             <table width="800" border="1">
                                 <tr align="center" bgcolor="#d3d3d3">

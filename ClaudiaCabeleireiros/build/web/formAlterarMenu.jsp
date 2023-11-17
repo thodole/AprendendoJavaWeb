@@ -36,9 +36,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="760" height="330">
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Alterar Menu</h2>
+                            <h2>ALTERAR MENU</h2>
                             <form name="formAlterarMenu" action="alterarMenu.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                             <%

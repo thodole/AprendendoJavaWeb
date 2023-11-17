@@ -41,9 +41,16 @@
             <table>
                  <%@include file="cabecalho.jsp"%>
                 <tr>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                    <td width="760" height="100">
+=======
+>>>>>>> Stashed changes
                     <td width="760" height="330">
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101
                         <div align="center">
-                            <h2>Alterar Serviço</h2>
+                            <h2>ALTERAR SERVIÇO</h2>
                             <form name="formAlterarServico" action="alterarServico.do" method="post" onsubmit="return validaForm();">
                             <table align="center">
                             <%

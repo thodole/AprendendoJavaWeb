@@ -26,9 +26,16 @@
             <table>
                 <%@include file="cabecalho.jsp"%>
                 <tr>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                    <td width="760" height="100">
+=======
+>>>>>>> Stashed changes
                     <td width="760" height="330">
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101
                         <div align="center">
-                            <h2>Gerir Menus do Perfil</h2>
+                            <h2>GERIR MENUS DO PERFIL</h2>
                             <form name="formGerirMenuPerfil" method="post" action="gerirMenuPerfil.do" onsubmit="return validaForm();">
                             <%
                                 int id = Integer.parseInt(request.getParameter("id"));
@@ -77,7 +84,7 @@
                                     </tr>
                                 </table>
                             </form>                            
-                            <br><br>
+                            <br>
                             <table width="550" border="1">
                                 <tr align="center" bgcolor="#d3d3d3">
                                     <td>ID</td>

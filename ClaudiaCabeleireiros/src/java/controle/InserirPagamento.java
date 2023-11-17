@@ -6,11 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
+import modelo.Pagamento;
+import modelo.PagamentoDAO;
+import modelo.ServicoCliente;
+import modelo.ServicoClienteDAO;
 
-public class EfetuarLogin extends HttpServlet {
+public class InserirPagamento extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -19,41 +20,52 @@ public class EfetuarLogin extends HttpServlet {
         try {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EfetuarLogin</title>");
+            out.println("<title>Servlet InserirPagamento</title>");
             out.println("</head>");
             out.println("<body>");
-            
-            HttpSession session = request.getSession();
-            
-            String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
 
-            try {
-                UsuarioDAO usuarioBD = new UsuarioDAO();
-                usuarioBD.conectar();
-                Usuario usuario = usuarioBD.logar(login, senha);
-
-                if (usuario.getId() > 0) {
-                    
-                    session.setAttribute("usuario", usuario);
-                    response.sendRedirect("index.jsp");
-                    
-                } else {
+            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+            double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
+            double valorPago = Double.parseDouble(request.getParameter("valorPago"));
+                        
+            if (valorTotal <= 0) {
+                out.print("Não há valor a ser pago!");
+            } else if (valorPago < 0) {
+                out.print("<script language='javascript'>");
+                out.print("O Valor Pago deve ser acima de zero!");
+                out.print("location.href='situacaoCliente.jsp?id="+idCliente+"';");
+                out.print("</script>");
+            } else {
+                try {
+                    ServicoCliente servicoCliente = new ServicoCliente();
+                    servicoCliente.setIdCliente(idCliente);
+                    Pagamento pagamento = new Pagamento();
+                    pagamento.setIdCliente(idCliente);
+                    pagamento.setValorTotal(valorTotal);
+                    pagamento.setValorPago(valorPago);
+                    pagamento.setValorAPagar(valorTotal - valorPago);
+                    PagamentoDAO pagamentoBD = new PagamentoDAO();
+                    ServicoClienteDAO servicoClienteBD = new ServicoClienteDAO();
+                    pagamentoBD.conectar();
+                    pagamentoBD.inserir(pagamento);
+                    pagamentoBD.desconectar();
+                    servicoClienteBD.conectar();
+                    servicoClienteBD.excluirTudo(servicoCliente);
+                    servicoClienteBD.desconectar();
                     out.print("<script language='javascript'>");
-                    out.print("alert('Login ou Senha inválidos!');");
-                    out.print("location.href='login.jsp';");
+                    out.print("alert('Pagamento inserido com sucesso.');");
+                    out.print("location.href='situacaoCliente.jsp?id="+idCliente+"';");
                     out.print("</script>");
+                } catch (Exception erro) {
+                    out.print(erro);
                 }
 
-            }   catch (Exception e) {
-                    out.print(e);
-                }
+            }
 
             out.println("</body>");
             out.println("</html>");
-        }
-        
-        finally {
+
+        } finally { 
             out.close();
         }
     }

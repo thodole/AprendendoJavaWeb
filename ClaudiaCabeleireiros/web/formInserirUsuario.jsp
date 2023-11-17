@@ -16,11 +16,6 @@
                     formulario.nome_usuario.focus();
                     return false;
                 }
-                if(formulario.telefone.value==""){
-                    alert("O campo Telefone deve ser preenchido!");
-                    formulario.telefone.focus();
-                    return false;
-                }
                 if(formulario.login.value==""){
                     alert("O campo Login deve ser preenchido!");
                     formulario.login.focus();
@@ -53,18 +48,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="760" height="330">
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Novo Usuário</h2>
+                            <h2>NOVO USUÁRIO</h2>
                             <form name="formInserirUsuario" action="inserirUsuario.do" method="post" onsubmit="return validaForm();">
                                 <table align="center">
                                     <tr>
                                         <td>Nome:</td>
                                         <td><input type="text" name="nome_usuario" size="30" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Telefone:</td>
-                                        <td><input type="text" name="telefone" size="30" /> </td>
                                     </tr>
                                     <tr>
                                         <td>Login:</td>

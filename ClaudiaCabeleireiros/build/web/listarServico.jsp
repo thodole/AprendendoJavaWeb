@@ -10,11 +10,20 @@
         <title>Listar Serviços</title>
     </head>
     <body>
-            <%@include file="cabecalho.jsp"%>
-            
-                    <td width="760" height="330">
+        <div align="center">
+            <table>
+                <tr>
+                    <td> <%@include file="banner.jsp"%> </td>
+                </tr>
+                <tr>
+                    <td align="center" height="40" valign="top">
+                        <%@include file="menu.jsp"%> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="760" height="100">
                         <div align="center">
-                            <h2>Lista de Serviços</h2>
+                            <h2>LISTA DE SERVIÇOS</h2>
                             <h3><a href="formInserirServico.jsp"><img src="imagens/novo.png" align="top">Novo Serviço</a></h3>
                             <table width="800" border="1">
                                 <tr align="center" bgcolor="#d3d3d3">

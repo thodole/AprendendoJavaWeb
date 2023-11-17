@@ -23,11 +23,6 @@
                     formulario.nome_usuario.focus();
                     return false;
                 }
-                if(formulario.telefone.value==""){
-                    alert("O campo Telefone deve ser preenchido!");
-                    formulario.telefone.focus();
-                    return false;
-                }
                 if(formulario.login.value==""){
                     alert("O campo Login deve ser preenchido!");
                     formulario.login.focus();
@@ -47,9 +42,13 @@
         <div align="center">
              <%@include file="cabecalho.jsp"%>
                 <tr>
+<<<<<<< HEAD
+                    <td width="760" height="100">
+=======
                     <td width="760" height="330">
+>>>>>>> d14b050a8b699180837da4149e8fe0ff57f0a101
                         <div align="center">
-                            <h2>Alterar Usuário</h2>
+                            <h2>ALTERAR USUÁRIO</h2>
                             <form name="formAlterarUsuario" action="alterarUsuario.do" method="post" onsubmit="return validaForm();">
                             <table align="center">
                             <%
@@ -99,10 +98,6 @@
                                 <tr>
                                     <td>Nome:</td>
                                     <td><input type="text" name="nome_usuario" value="<%=user.getNome_usuario()%>" size="30"></td>
-                                </tr>
-                                <tr>
-                                    <td>Telefone:</td>
-                                    <td><input type="text" name="telefone" value="<%=user.getTelefone()%>" size="30"></td>
                                 </tr>
                                 <tr>
                                     <td>Login:</td>
