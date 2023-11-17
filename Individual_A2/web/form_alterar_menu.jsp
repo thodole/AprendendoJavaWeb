@@ -1,10 +1,5 @@
-
-<%@page import="java.util.ArrayList"%>
-<%--@page import="modelo.Perfil"--%>
-<%--@page import="modelo.PerfilDAO"--%>
 <%@page import="modelo.Menu"%>
 <%@page import="modelo.MenuDAO"%>
-<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,21 +8,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script language="javascript" >
-            function validaForm(){
+           function validaForm(){
                 formulario = document.form_menu;
                 if(formulario.menu.value==""){
-                    alert("O Campo Menu deve ser Preenchido!!");
+                    alert("O Campo menu deve ser preenchido!!");
                     formulario.menu.focus();
                     return false;
                 }
                 if(formulario.link.value==""){
-                    alert("O Campo Link deve ser preenchido!!");
+                    alert("O Campo link deve ser preenchido!!");
                     formulario.link.focus();
                     return false;
                 }
+                if(formulario.icone.value==""){
+                    alert("O Campo icone deve ser preenchido!!");
+                    formulario.icone.focus();
+                    return false;
+                }
+
                 return true;
             }
-        </script>
+         </script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -40,8 +41,7 @@
                 </tr>
                 <tr>
                     <td width="760" height="20" valign="top">
-                       <%--@include file="menu.jsp" --%>
-                        <a href="listar_menu.jsp">Listar Menu</a>
+                        <%@include file="menu.jsp" %>
                     </td>
                 </tr>
                 <tr>
@@ -55,26 +55,34 @@
                                             try {
                                                 MenuDAO mDB = new MenuDAO();
                                                 mDB.conectar();
-                                                Menu menu = mDB.carregarPorId(id);
+                                                Menu m = mDB.carregaPorId(id);
                                                 mDB.desconectar();
-                                                if (menu.getId()>0){
+                                                if (m.getId()>0){
                                                     %>
                                                     <tr>
                                                         <td>ID:</td>
-                                                        <td><%=menu.getId() %> <input type="hidden" name="id" value="<%=menu.getId() %>"> </td>
+                                                        <td><%=m.getId() %> <input type="hidden" name="id" value="<%=m.getId() %>"> </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Menu:</td>
                                                         <td>
-                                                            <input type="text" name="menu" value="<%=menu.getMenu() %>" size="60">
+                                                            <input type="text" name="menu" value="<%=m.getMenu() %>" size="60">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Link:</td>
-                                                        <td><input type="text" name="link" value="<%=menu.getLink() %>"  size="30" /> </td>
+                                                        <td>
+                                                            <input type="text" name="link" value="<%=m.getLink() %>" size="60">
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <%-- <td></td> --%>
+                                                        <td>Icone:</td>
+                                                        <td>
+                                                            <input type="text" name="icone" value="<%=m.getIcone() %>" size="60">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
                                                         <td><input type="submit" value="Alterar"></td>
                                                     </tr>
                                                     <%

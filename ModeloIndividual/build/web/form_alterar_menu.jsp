@@ -15,9 +15,9 @@
         <script language="javascript" >
             function validaForm(){
                 formulario = document.form_menu;
-                if(formulario.id_menu.value==""){
+                if(formulario.menu.value==""){
                     alert("O Campo Menu deve ser Preenchido!!");
-                    formulario.id_menu.focus();
+                    formulario.menu.focus();
                     return false;
                 }
                 if(formulario.link.value==""){
